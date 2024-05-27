@@ -1,3 +1,9 @@
+class Tasks {
+    constructor(taskNameInput) {
+        this.taskNameInput = taskNameInput;
+        this.completedStatus = false;
+    }
+}
 const taskInput = document.getElementById('taskInput');
 const taskList = document.getElementById('tasklist');
 function addTask() {
@@ -11,7 +17,8 @@ function addTask() {
         checkbox.style.marginRight = '4px';
         const label = document.createElement('label');
         label.htmlFor = checkbox.id;
-        label.textContent = " " + taskName;
+        label.textContent = taskName;
+        markTaskCompleted(checkbox);
         taskList.appendChild(listItem);
         listItem.appendChild(checkbox);
         listItem.appendChild(label);
@@ -20,3 +27,18 @@ function addTask() {
 }
 const addButton = document.querySelector('button');
 addButton.addEventListener('click', addTask);
+const checkboxes = document.querySelectorAll('#tasklist input[type="checkbox"]');
+checkboxes.forEach(checkbox => {
+    markTaskCompleted(checkbox);
+});
+function markTaskCompleted(checkbox) {
+    checkbox.addEventListener('change', () => {
+        const label = checkbox.nextElementSibling;
+        if (checkbox.checked) {
+            label.style.textDecoration = 'line-through';
+        }
+        else {
+            label.style.textDecoration = 'none';
+        }
+    });
+}

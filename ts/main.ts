@@ -1,4 +1,15 @@
-// app.ts
+
+class Tasks {
+    taskNameInput: string;
+    completedStatus: boolean;
+
+    constructor (taskNameInput: string){
+        this.taskNameInput = taskNameInput;
+        this.completedStatus = false;
+    }
+}
+
+
 
 // Get references to the input field and task list
 const taskInput = document.getElementById('taskInput') as HTMLInputElement;
@@ -22,7 +33,9 @@ function addTask() {
         // Create a label for the task
         const label = document.createElement('label');
         label.htmlFor = checkbox.id;
-        label.textContent = " " + taskName;
+        label.textContent = taskName;
+
+        markTaskCompleted(checkbox);
 
         // Append the new list item to the existing task list
         taskList.appendChild(listItem);
@@ -41,3 +54,24 @@ function addTask() {
 // Attach the addTask function to the button click event
 const addButton = document.querySelector('button');
 addButton.addEventListener('click', addTask);
+
+
+// Assuming each checkbox is within the 'tasklist' ul element
+const checkboxes = document.querySelectorAll('#tasklist input[type="checkbox"]') as NodeListOf<HTMLInputElement>;
+
+// Attach event listener to all checkboxes
+checkboxes.forEach(checkbox => {
+    markTaskCompleted(checkbox);
+});
+
+function markTaskCompleted(checkbox: HTMLInputElement) {
+    checkbox.addEventListener('change', () => {
+        // Get the label that immediately follows the checkbox
+        const label = checkbox.nextElementSibling as HTMLLabelElement;
+        if (checkbox.checked) {
+            label.style.textDecoration = 'line-through'; // Mark as completed
+        } else {
+            label.style.textDecoration = 'none';
+        }
+    });
+}
