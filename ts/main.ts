@@ -1,16 +1,4 @@
 
-class Tasks {
-    taskNameInput: string;
-    completedStatus: boolean;
-
-    constructor (taskNameInput: string){
-        this.taskNameInput = taskNameInput;
-        this.completedStatus = false;
-    }
-}
-
-
-
 // Get references to the input field and task list
 const taskInput = document.getElementById('taskInput') as HTMLInputElement;
 const taskList = document.getElementById('tasklist') as HTMLUListElement;

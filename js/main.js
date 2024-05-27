@@ -1,9 +1,3 @@
-class Tasks {
-    constructor(taskNameInput) {
-        this.taskNameInput = taskNameInput;
-        this.completedStatus = false;
-    }
-}
 const taskInput = document.getElementById('taskInput');
 const taskList = document.getElementById('tasklist');
 function addTask() {
