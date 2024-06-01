@@ -1,15 +1,16 @@
 body {
     /* Add your image url */
-    background: url("/images/PackwoodMountainView.jpg") no-repeat center center fixed; 
+    background: url("/images/PackwoodMountainView.jpg") no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
-    background-size: cover;
-    
+    background-size: cover;    
 }
+
 body::after {
     opacity: 0.5;
 }
+
 h3{
     color: white;
     font-size: 45px;
