@@ -3,13 +3,30 @@
 const taskInput = document.getElementById('taskInput') as HTMLInputElement;
 const taskList = document.getElementById('tasklist') as HTMLUListElement;
 
-//Function to create a new checkbox
+/**
+ * Function to create a new checkbox using id parameter
+ * @param id Used to populate the id of the checkbox in the html file
+ * @returns Returns the checkbox element as a variable ready to be output to the html page
+ */
 function createCheckbox(id: string):HTMLInputElement {
     const checkbox = document.createElement('input');
     checkbox.type = 'checkbox';
     checkbox.id = id; //the id parameter goes here
     checkbox.style.marginRight = '4px';
     return checkbox;
+}
+
+/**
+ * Function to create a new label
+ * @param forId Copies the checkbox id for the for='' id section of the label element
+ * @param text grabs the input of the task name and sets in into the label text section
+ * @returns Return the built label element with provided parameters
+ */
+function createLabel(forId: string, text:string):HTMLLabelElement {
+    const label = document.createElement('label');
+    label.htmlFor = forId;
+    label.textContent = text;
+    return label;
 }
 
 // Function to add a new task

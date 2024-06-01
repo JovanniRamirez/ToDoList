@@ -7,6 +7,12 @@ function createCheckbox(id) {
     checkbox.style.marginRight = '4px';
     return checkbox;
 }
+function createLabel(forId, text) {
+    const label = document.createElement('label');
+    label.htmlFor = forId;
+    label.textContent = text;
+    return label;
+}
 function addTask() {
     const taskName = taskInput.value;
     if (taskName) {
