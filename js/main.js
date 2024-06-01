@@ -18,13 +18,9 @@ function addTask() {
     if (taskName) {
         const listItem = document.createElement('li');
         listItem.className = 'list-group-item';
-        const checkbox = document.createElement('input');
-        checkbox.type = 'checkbox';
-        checkbox.id = `task${taskList.children.length + 1}`;
-        checkbox.style.marginRight = '4px';
-        const label = document.createElement('label');
-        label.htmlFor = checkbox.id;
-        label.textContent = taskName;
+        const checkboxId = `task${taskList.children.length + 1}`;
+        const checkbox = createCheckbox(checkboxId);
+        const label = createLabel(checkboxId, taskName);
         markTaskCompleted(checkbox);
         taskList.appendChild(listItem);
         listItem.appendChild(checkbox);
