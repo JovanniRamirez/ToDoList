@@ -30,10 +30,6 @@ function addTask() {
 }
 const addButton = document.querySelector('button');
 addButton.addEventListener('click', addTask);
-const checkboxes = document.querySelectorAll('#tasklist input[type="checkbox"]');
-checkboxes.forEach(checkbox => {
-    markTaskCompleted(checkbox);
-});
 function markTaskCompleted(checkbox) {
     checkbox.addEventListener('change', () => {
         const label = checkbox.nextElementSibling;
@@ -45,3 +41,7 @@ function markTaskCompleted(checkbox) {
         }
     });
 }
+const checkboxes = document.querySelectorAll('#tasklist input[type="checkbox"]');
+checkboxes.forEach(checkbox => {
+    markTaskCompleted(checkbox);
+});

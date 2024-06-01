@@ -29,7 +29,11 @@ function createLabel(forId: string, text:string):HTMLLabelElement {
     return label;
 }
 
-// Function to add a new task
+/**
+ * Function to add a new task, use createLabel and createCheckbox to create a new task
+ * and populate the html with a new row of task information. Grab the input from the input text box
+ * and make the checkbox cross out the label text if the box is checked.
+ */
 function addTask() {
     const taskName = taskInput.value;
 
@@ -64,23 +68,24 @@ function addTask() {
 const addButton = document.querySelector('button');
 addButton.addEventListener('click', addTask);
 
+// Function to mark a task as completed
+function markTaskCompleted(checkbox: HTMLInputElement) {
+    checkbox.addEventListener('change', () => {
+        //Get the label that immediately follows the checkbox
+        const label = checkbox.nextElementSibling as HTMLLabelElement;
+        if (checkbox.checked) {
+            label.style.textDecoration = 'line-through'; //Mark as completed line through
+        }
+        else {
+            label.style.textDecoration = 'none';
+        }
+    })
+}
 
 // Assuming each checkbox is within the 'tasklist' ul element
-const checkboxes = document.querySelectorAll('#tasklist input[type="checkbox"]') as NodeListOf<HTMLInputElement>;
+const checkboxes = document.querySelectorAll<HTMLInputElement>('#tasklist input[type="checkbox"]') ;
 
 // Attach event listener to all checkboxes
 checkboxes.forEach(checkbox => {
     markTaskCompleted(checkbox);
 });
-
-function markTaskCompleted(checkbox: HTMLInputElement) {
-    checkbox.addEventListener('change', () => {
-        // Get the label that immediately follows the checkbox
-        const label = checkbox.nextElementSibling as HTMLLabelElement;
-        if (checkbox.checked) {
-            label.style.textDecoration = 'line-through'; // Mark as completed
-        } else {
-            label.style.textDecoration = 'none';
-        }
-    });
-}
