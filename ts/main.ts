@@ -3,6 +3,15 @@
 const taskInput = document.getElementById('taskInput') as HTMLInputElement;
 const taskList = document.getElementById('tasklist') as HTMLUListElement;
 
+//Function to create a new checkbox
+function createCheckbox(id: string):HTMLInputElement {
+    const checkbox = document.createElement('input');
+    checkbox.type = 'checkbox';
+    checkbox.id = id; //the id parameter goes here
+    checkbox.style.marginRight = '4px';
+    return checkbox;
+}
+
 // Function to add a new task
 function addTask() {
     const taskName = taskInput.value;

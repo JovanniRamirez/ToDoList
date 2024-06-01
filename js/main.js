@@ -1,5 +1,12 @@
 const taskInput = document.getElementById('taskInput');
 const taskList = document.getElementById('tasklist');
+function createCheckbox(id) {
+    const checkbox = document.createElement('input');
+    checkbox.type = 'checkbox';
+    checkbox.id = id;
+    checkbox.style.marginRight = '4px';
+    return checkbox;
+}
 function addTask() {
     const taskName = taskInput.value;
     if (taskName) {
