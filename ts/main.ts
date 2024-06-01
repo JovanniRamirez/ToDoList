@@ -16,6 +16,23 @@ class TodoList {
                 this.addTask();
             }
         })
+        this.initializeTasks();
+    }
+
+    
+
+    private initializeTasks() {
+        const tasks = this.taskList.children;
+        for (let i = 0; i < tasks.length; i++) {
+            const task = tasks[i];
+            const checkbox = task.querySelector('input[type="checkbox"]') as HTMLInputElement;
+            this.markTaskCompleted(checkbox);
+            // If this task is already marked as completed, apply the line through style
+            if (checkbox.checked){ 
+                const label = task.querySelector('label') as HTMLLabelElement;
+                label.style.textDecoration = 'line-through';
+            }
+        }
     }
 
     /**

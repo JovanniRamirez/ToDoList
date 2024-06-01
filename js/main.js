@@ -10,6 +10,19 @@ class TodoList {
                 this.addTask();
             }
         });
+        this.initializeTasks();
+    }
+    initializeTasks() {
+        const tasks = this.taskList.children;
+        for (let i = 0; i < tasks.length; i++) {
+            const task = tasks[i];
+            const checkbox = task.querySelector('input[type="checkbox"]');
+            this.markTaskCompleted(checkbox);
+            if (checkbox.checked) {
+                const label = task.querySelector('label');
+                label.style.textDecoration = 'line-through';
+            }
+        }
     }
     createCheckbox(id) {
         const checkbox = document.createElement('input');
