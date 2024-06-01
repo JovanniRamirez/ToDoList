@@ -35,9 +35,12 @@ function createLabel(forId: string, text:string):HTMLLabelElement {
  * and make the checkbox cross out the label text if the box is checked.
  */
 function addTask() {
-    const taskName = taskInput.value;
+    let taskName = taskInput.value;
 
     if (taskName) {
+        // Capitalize the first letter of the task name
+        taskName = taskName.charAt(0).toUpperCase() + taskName.slice(1);
+
         // Create a new list item
         const listItem = document.createElement('li');
         listItem.className = 'list-group-item';
@@ -88,4 +91,12 @@ const checkboxes = document.querySelectorAll<HTMLInputElement>('#tasklist input[
 // Attach event listener to all checkboxes
 checkboxes.forEach(checkbox => {
     markTaskCompleted(checkbox);
+});
+
+// Add event listener for the enter key
+taskInput.addEventListener('keydown', function(event) {
+    if (event.key === 'Enter') {
+        event.preventDefault();
+        addTask();
+    }
 });

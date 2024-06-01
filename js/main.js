@@ -14,8 +14,9 @@ function createLabel(forId, text) {
     return label;
 }
 function addTask() {
-    const taskName = taskInput.value;
+    let taskName = taskInput.value;
     if (taskName) {
+        taskName = taskName.charAt(0).toUpperCase() + taskName.slice(1);
         const listItem = document.createElement('li');
         listItem.className = 'list-group-item';
         const checkboxId = `task${taskList.children.length + 1}`;
@@ -44,4 +45,10 @@ function markTaskCompleted(checkbox) {
 const checkboxes = document.querySelectorAll('#tasklist input[type="checkbox"]');
 checkboxes.forEach(checkbox => {
     markTaskCompleted(checkbox);
+});
+taskInput.addEventListener('keydown', function (event) {
+    if (event.key === 'Enter') {
+        event.preventDefault();
+        addTask();
+    }
 });
