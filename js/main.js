@@ -1,18 +1,5 @@
 const taskInput = document.getElementById('taskInput');
 const taskList = document.getElementById('tasklist');
-function createCheckbox(id) {
-    const checkbox = document.createElement('input');
-    checkbox.type = 'checkbox';
-    checkbox.id = id;
-    checkbox.style.marginRight = '4px';
-    return checkbox;
-}
-function createLabel(forId, text) {
-    const label = document.createElement('label');
-    label.htmlFor = forId;
-    label.textContent = text;
-    return label;
-}
 function addTask() {
     let taskName = taskInput.value;
     if (taskName) {
@@ -28,6 +15,19 @@ function addTask() {
         listItem.appendChild(label);
         taskInput.value = '';
     }
+}
+function createCheckbox(id) {
+    const checkbox = document.createElement('input');
+    checkbox.type = 'checkbox';
+    checkbox.id = id;
+    checkbox.style.marginRight = '4px';
+    return checkbox;
+}
+function createLabel(forId, text) {
+    const label = document.createElement('label');
+    label.htmlFor = forId;
+    label.textContent = text;
+    return label;
 }
 const addButton = document.querySelector('button');
 addButton.addEventListener('click', addTask);

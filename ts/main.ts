@@ -4,6 +4,43 @@ const taskInput = document.getElementById('taskInput') as HTMLInputElement;
 const taskList = document.getElementById('tasklist') as HTMLUListElement;
 
 /**
+ * Function to add a new task, use createLabel and createCheckbox to create a new task
+ * and populate the html with a new row of task information. Grab the input from the input text box
+ * and make the checkbox cross out the label text if the box is checked.
+ */
+function addTask() {
+    let taskName = taskInput.value;
+
+    if (taskName) {
+        // Capitalize the first letter of the task name
+        taskName = taskName.charAt(0).toUpperCase() + taskName.slice(1);
+
+        // Create a new list item
+        const listItem = document.createElement('li');
+        listItem.className = 'list-group-item';
+
+        // Create a checkbox and label
+        const checkboxId = `task${taskList.children.length + 1}`;
+        const checkbox = createCheckbox(checkboxId);
+        const label = createLabel(checkboxId, taskName);
+
+        markTaskCompleted(checkbox);
+
+        // Append the new list item to the existing task list
+        taskList.appendChild(listItem);
+
+        // Append checkbox and label to the list item
+        listItem.appendChild(checkbox);
+        listItem.appendChild(label);
+
+        
+
+        // Clear the input field
+        taskInput.value = '';
+    }
+}
+
+/**
  * Function to create a new checkbox using id parameter
  * @param id Used to populate the id of the checkbox in the html file
  * @returns Returns the checkbox element as a variable ready to be output to the html page
@@ -29,44 +66,6 @@ function createLabel(forId: string, text:string):HTMLLabelElement {
     return label;
 }
 
-/**
- * Function to add a new task, use createLabel and createCheckbox to create a new task
- * and populate the html with a new row of task information. Grab the input from the input text box
- * and make the checkbox cross out the label text if the box is checked.
- */
-function addTask() {
-    let taskName = taskInput.value;
-
-    if (taskName) {
-        // Capitalize the first letter of the task name
-        taskName = taskName.charAt(0).toUpperCase() + taskName.slice(1);
-
-        // Create a new list item
-        const listItem = document.createElement('li');
-        listItem.className = 'list-group-item';
-
-        //Create a checkbox and label
-
-        const checkboxId = `task${taskList.children.length + 1}`;
-        const checkbox = createCheckbox(checkboxId);
-        const label = createLabel(checkboxId, taskName);
-
-        markTaskCompleted(checkbox);
-
-        // Append the new list item to the existing task list
-        taskList.appendChild(listItem);
-
-        // Append checkbox and label to the list item
-        listItem.appendChild(checkbox);
-        listItem.appendChild(label);
-
-        
-
-        // Clear the input field
-        taskInput.value = '';
-    }
-}
-
 // Attach the addTask function to the button click event
 const addButton = document.querySelector('button');
 addButton.addEventListener('click', addTask);
@@ -74,7 +73,7 @@ addButton.addEventListener('click', addTask);
 // Function to mark a task as completed
 function markTaskCompleted(checkbox: HTMLInputElement) {
     checkbox.addEventListener('change', () => {
-        //Get the label that immediately follows the checkbox
+        // Get the label that immediately follows the checkbox
         const label = checkbox.nextElementSibling as HTMLLabelElement;
         if (checkbox.checked) {
             label.style.textDecoration = 'line-through'; //Mark as completed line through
